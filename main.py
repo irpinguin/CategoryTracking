@@ -17,14 +17,16 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.common import NoSuchElementException, TimeoutException
 
 BASE_URL = 'https://irmag.ru'
-CATALOG_URL = '/cat'
+CAT_URL = '/cat'
 CAT_PAGE_SIGN = "Каталог - IRMAG.RU"
 TIMEOUT = 3
 PAUSE_MIN = 0
 PAUSE_MAX = 2
+#
+CAT_CATEGORY_MENU = ('xpath', '//div[@class="alert alert-grey p-10"]')
 
 
 def pause():
@@ -125,7 +127,7 @@ def init_driver() -> webdriver:
 
 def main():
 
-    url = BASE_URL+CATALOG_URL
+    url = BASE_URL+CAT_URL
     ua = UserAgent()
     headers = {'User-Agent': ua.random}
     # session = Session()
@@ -144,25 +146,92 @@ def main():
     # driver.get('https://2ip.io/ru/geoip/')
     wait = WebDriverWait(driver, TIMEOUT, poll_frequency=1)
 
-    # получаем код страницы
+    # получаем категории 1-го уровня
     driver.get(url)
+    wait.until(EC.visibility_of_element_located(CAT_CATEGORY_MENU))      # ждем появления на странице меню с категориями
     cat_page_src = driver.page_source
     cat_page_soup = BeautifulSoup(cat_page_src, 'lxml')
 
-    # получаем категории 1-го уровня
     cat_lvl_1_url_list = []
+    cat_dict = {}
     cat_lvl_1_container = (cat_page_soup.findAll('a', class_='btn btn-link preload'))
 
     for category in cat_lvl_1_container:
         tag_href = category['href'].split('/')[2]
         cat_dict = {
-            'cat_lvl1_id': tag_href,
-            'url': BASE_URL + CATALOG_URL + '/' + tag_href,
-            'name': category.get_text(strip=True)
+            'cat_lvl_1_id': tag_href,
+            'name': category.text.split('\n')[1].strip(),
+            'url': BASE_URL + CAT_URL + '/' + tag_href
         }
         cat_lvl_1_url_list.append(cat_dict)
 
     print(cat_lvl_1_url_list)
+
+    # получаем категории 2-го уровня
+    # пока берем первый пункт
+    print(f"\nУровень 2. Для категории {cat_lvl_1_url_list[1]['name']} "
+          f"с ID {cat_lvl_1_url_list[1]['cat_lvl_1_id']} "
+          f"ссылка {cat_lvl_1_url_list[1]['url']}")
+    url = cat_lvl_1_url_list[1]['url']
+
+    driver.get(url)
+
+    # закладываемся на то, что на определенном уровне меню может не быть
+    try:
+        wait.until(EC.visibility_of_element_located(CAT_CATEGORY_MENU))      # ждем появления меню с категориями
+
+        cat_page_src = driver.page_source
+        cat_page_soup = BeautifulSoup(cat_page_src, 'lxml')
+
+        cat_lvl_2_url_list = []
+        cat_dict = {}
+        cat_lvl_2_container = (cat_page_soup.findAll('a', class_='btn btn-link preload'))
+
+        for category in cat_lvl_2_container:
+            tag_href = category['href'].split('/')[2]
+            cat_dict = {
+                'cat_lvl_2_id': tag_href,
+                'name': category.text.split('\n')[1].strip(),
+                'url': BASE_URL + CAT_URL + '/' + tag_href
+            }
+            cat_lvl_2_url_list.append(cat_dict)
+
+        print(cat_lvl_2_url_list)
+    except TimeoutException:
+        print("На уровне 2 меню отсутствует")
+
+    # получаем категории 3-го уровня
+    # пока берем первый пункт
+    print(f"\nУровень 3. Для категории {cat_lvl_2_url_list[0]['name']} "
+          f"с ID {cat_lvl_2_url_list[0]['cat_lvl_2_id']} "
+          f"ссылка {cat_lvl_2_url_list[0]['url']}")
+    url = cat_lvl_2_url_list[0]['url']
+
+    driver.get(url)
+
+    # закладываемся на то, что на определенном уровне меню может не быть
+    try:
+        wait.until(EC.visibility_of_element_located(CAT_CATEGORY_MENU))  # ждем появления меню с категориями
+
+        cat_page_src = driver.page_source
+        cat_page_soup = BeautifulSoup(cat_page_src, 'lxml')
+
+        cat_lvl_3_url_list = []
+        cat_dict = {}
+        cat_lvl_3_container = (cat_page_soup.findAll('a', class_='btn btn-link preload'))
+
+        for category in cat_lvl_3_container:
+            tag_href = category['href'].split('/')[2]
+            cat_dict = {
+                'cat_lvl_3_id': tag_href,
+                'name': category.text.split('\n')[1].strip(),
+                'url': BASE_URL + CAT_URL + '/' + tag_href
+            }
+            cat_lvl_3_url_list.append(cat_dict)
+
+        print(cat_lvl_3_url_list)
+    except TimeoutException:
+        print("На уровне 3 меню отсутствует")
 
 
 if __name__ == "__main__":
