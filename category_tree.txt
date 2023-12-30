@@ -1,0 +1,34 @@
+Уровень 1.
+[
+    {'cat_lvl_1_id': '1143372', 'name': 'Baikal Store', 'url': 'https://irmag.ru/cat/1143372'},
+    {'cat_lvl_1_id': '11', 'name': 'Бытовая химия', 'url': 'https://irmag.ru/cat/11'},
+    {'cat_lvl_1_id': '10', 'name': 'Детские товары', 'url': 'https://irmag.ru/cat/10'},
+    {'cat_lvl_1_id': '191320', 'name': 'Дисконт', 'url': 'https://irmag.ru/cat/191320'},
+    {'cat_lvl_1_id': '656447', 'name': 'Здоровье', 'url': 'https://irmag.ru/cat/656447'},
+    {'cat_lvl_1_id': '1115874', 'name': 'Канцелярия', 'url': 'https://irmag.ru/cat/1115874'},
+    {'cat_lvl_1_id': '250988', 'name': 'Косметика', 'url': 'https://irmag.ru/cat/250988'},
+    {'cat_lvl_1_id': '250987', 'name': 'Личная гигиена', 'url': 'https://irmag.ru/cat/250987'},
+    {'cat_lvl_1_id': '13', 'name': 'Одежда, белье, текстиль', 'url': 'https://irmag.ru/cat/13'},
+    {'cat_lvl_1_id': '54536', 'name': 'Парфюмерия', 'url': 'https://irmag.ru/cat/54536'},
+    {'cat_lvl_1_id': '218853', 'name': 'Подарки, упаковка', 'url': 'https://irmag.ru/cat/218853'},
+    {'cat_lvl_1_id': '503834', 'name': 'Продукты', 'url': 'https://irmag.ru/cat/503834'},
+    {'cat_lvl_1_id': '12', 'name': 'Промтовары', 'url': 'https://irmag.ru/cat/12'},
+    {'cat_lvl_1_id': '22', 'name': 'Проф. косметика', 'url': 'https://irmag.ru/cat/22'},
+    {'cat_lvl_1_id': '203131', 'name': 'Товары для животных', 'url': 'https://irmag.ru/cat/203131'}
+]
+
+Уровень 2. Для категории Бытовая химия с ID 11 ссылка https://irmag.ru/cat/11
+[
+    {'cat_lvl_2_id': '127881', 'name': 'Средства для мытья посуды', 'url': 'https://irmag.ru/cat/127881'},
+    {'cat_lvl_2_id': '127876', 'name': 'Антистатики', 'url': 'https://irmag.ru/cat/127876'},
+    {'cat_lvl_2_id': '127889', 'name': 'Товары для стирки белья', 'url': 'https://irmag.ru/cat/127889'},
+    {'cat_lvl_2_id': '641', 'name': 'Инсектициды (насекомые)', 'url': 'https://irmag.ru/cat/641'},
+    {'cat_lvl_2_id': '127878', 'name': 'Освежители воздуха', 'url': 'https://irmag.ru/cat/127878'},
+    {'cat_lvl_2_id': '127886', 'name': 'Чистящие средства', 'url': 'https://irmag.ru/cat/127886'}
+]
+
+Уровень 3. Для категории Средства для мытья посуды с ID 127881 ссылка https://irmag.ru/cat/127881
+[
+    {'cat_lvl_3_id': '655641', 'name': 'Средства для посудомоечных машин', 'url': 'https://irmag.ru/cat/655641'},
+    {'cat_lvl_3_id': '655709', 'name': 'Средства для мытья посуды', 'url': 'https://irmag.ru/cat/655709'}
+]
