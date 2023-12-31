@@ -1,0 +1,24 @@
+Уровень 1.
+[
+    {'level': 1, 'cat_id': '1143372',  'name': 'Baikal Store',         'url': 'https://irmag.ru/cat/1143372'},
+    {'level': 1, 'cat_id': '11',       'name': 'Бытовая химия',        'url': 'https://irmag.ru/cat/11'},
+    ...
+    {'level': 1, 'cat_id': '203131',   'name': 'Товары для животных',  'url': 'https://irmag.ru/cat/203131'}
+]
+
+Уровень 2. Для категории Бытовая химия с ID 11 ссылка https://irmag.ru/cat/11
+[
+    {'level': 2, 'cat_id': '127881', 'name': 'Средства для мытья посуды',   'url': 'https://irmag.ru/cat/127881'},
+    {'level': 2, 'cat_id': '127876', 'name': 'Антистатики',                 'url': 'https://irmag.ru/cat/127876'},
+    ...
+    {'level': 2, 'cat_id': '127886', 'name': 'Чистящие средства',           'url': 'https://irmag.ru/cat/127886'}
+]
+
+Уровень 3. Для категории Средства для мытья посуды с ID 127881 ссылка https://irmag.ru/cat/127881
+[
+    {'level': 3, 'cat_id': '655641', 'name': 'Средства для посудомоечных машин',  'url': 'https://irmag.ru/cat/655641'},
+    {'level': 3, 'cat_id': '655709', 'name': 'Средства для мытья посуды',         'url': 'https://irmag.ru/cat/655709'}
+]
+
+Уровень 4. Для категории Средства для посудомоечных машин с ID 655641 ссылка https://irmag.ru/cat/655641
+[]
