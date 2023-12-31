@@ -1,0 +1,59 @@
+[
+  {
+    "level": 1,
+    "cat_id": "1143372",
+    "name": "Baikal Store",
+    "url": "https://irmag.ru/cat/1143372"
+  },
+  {
+    "level": 1,
+    "cat_id": "11",
+    "name": "Бытовая химия",
+    "url": "https://irmag.ru/cat/11",
+    "subcategories": [
+      {
+        "level": 2,
+        "cat_id": "127881",
+        "name": "Средства для мытья посуды",
+        "url": "https://irmag.ru/cat/127881",
+        "subcategories": [
+          {
+            "level": 3,
+            "cat_id": "655641",
+            "name": "Средства для посудомоечных машин",
+            "url": "https://irmag.ru/cat/655641",
+            "subcategories": []
+          },
+          {
+            "level": 3,
+            "cat_id": "655709",
+            "name": "Средства для мытья посуды",
+            "url": "https://irmag.ru/cat/655709",
+            "subcategories": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "cat_id": "127876",
+        "name": "Антистатики",
+        "url": "https://irmag.ru/cat/127876",
+        "subcategories": []
+      },
+      {
+        "level": 2,
+        "cat_id": "127886",
+        "name": "Чистящие средства",
+        "url": "https://irmag.ru/cat/127886",
+        "subcategories": []
+      }
+    ]
+  },
+  {
+    "level": 1,
+    "cat_id": "203131",
+    "name": "Товары для животных",
+    "url": "https://irmag.ru/cat/203131",
+    "subcategories": []
+  }
+]

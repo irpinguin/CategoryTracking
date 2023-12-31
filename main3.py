@@ -9,9 +9,10 @@ from fake_useragent import UserAgent
 from random import randint
 import requests
 from requests import Session, Response
-from typing import Optional
+from typing import Optional, List, Dict, Union, Any
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -25,7 +26,7 @@ import pandas as pd
 BASE_URL = 'https://irmag.ru'
 CAT_URL = '/cat'
 CAT_PAGE_SIGN = "Каталог - IRMAG.RU"
-TIMEOUT = 3
+TIMEOUT = 10
 PAUSE_MIN = 0
 PAUSE_MAX = 2
 #
@@ -129,7 +130,7 @@ def init_driver() -> webdriver:
     return driver
 
 
-def get_category_list(driver: webdriver, level: int, url: str, class_name: str) -> Optional[list]:
+def get_category_tree(driver: WebDriver, level: int, url: str, class_name: str) -> Optional[Union[Dict[str, Any], None]]:
     """
     Получение списка категорий на определенном уровне иерархии
 
@@ -137,10 +138,10 @@ def get_category_list(driver: webdriver, level: int, url: str, class_name: str) 
     :param level: уровень иерархии категорий
     :param url: ссылка на категорию
     :param class_name: локатор - класс для поиска ссылок
-    :return: список словарей с категориями {le{'lvl': 1, 'cat_lvl_1': '1143372', 'name': 'Baikal Store', 'url': 'https://irmag.ru/cat/1143372'}
-            или None, если вложенных категорий на этом уровне не найдено
+    :return: словарь с категориями в форме дерева или None, если вложенных категорий на этом уровне не найдено
     """
 
+    # print(f"Обработка уровня {level}.")
     wait = WebDriverWait(driver, TIMEOUT, poll_frequency=1)
     driver.get(url)
 
@@ -149,19 +150,23 @@ def get_category_list(driver: webdriver, level: int, url: str, class_name: str) 
         cat_page_src = driver.page_source
         cat_page_soup = BeautifulSoup(cat_page_src, 'lxml')
 
-        cat_list = []
+        cat_tree = {}
         for category in cat_page_soup.findAll('a', class_=class_name):
             tag_href = category['href'].split('/')[2]
             cat_dict = {
-                f'level': level,
+                'level': level,
                 f'category_id_lvl_{level}': tag_href,
                 'name': category.text.split('\n')[1].strip(),
-                'url': BASE_URL + CAT_URL + '/' + tag_href
+                'url': BASE_URL + CAT_URL + '/' + tag_href,
+                'subcategories': get_category_tree(driver, level + 1, BASE_URL + CAT_URL + '/' + tag_href, class_name)
             }
-            cat_list.append(cat_dict)
-        return cat_list
+            cat_tree[tag_href] = cat_dict
+
+        pause()
+        return cat_tree if cat_tree else None
     except TimeoutException:
-        print(f"На уровне {level} меню следующего уровня отсутствует")
+        # print(f"На уровне {level} меню следующего уровня отсутствует")
+        pause()
         return None
 
 
@@ -184,23 +189,11 @@ def main():
     driver = init_driver()
     # проверка геопозиции
     # driver.get('https://2ip.io/ru/geoip/')
-    # wait = WebDriverWait(driver, TIMEOUT, poll_frequency=1)
 
-    # получаем категории 1-го уровня
-    cat_lvl_1_url_list = get_category_list(driver, 1, url, CAT_MENU_ITEMS_LOC)
-    print(cat_lvl_1_url_list)
-
-    # Проходим по категориям 1-го уровня и получаем подкатегории
-    level = 2
-    for category in cat_lvl_1_url_list:
-        print(f"\nУровень {level} для категории {category['name']}")
-        cat_lvl_2_url_list = get_category_list(driver, level, category['url'], CAT_MENU_ITEMS_LOC)
-        print(cat_lvl_2_url_list)
     #
-    #     for cat_lvl_2 in cat_lvl_2_url_list:
-    #         print(f"\nУровень {len(cat_lvl_2)} для категории {cat_lvl_2['name']}")
-    #         cat_lvl_3_url_list = get_category_list(driver, cat_lvl_2['url'], 'CAT_CATEGORY_MENU')
-    #         print(cat_lvl_3_url_list)
+    level_to_start = 1
+    result_tree = get_category_tree(driver, level_to_start, url, CAT_MENU_ITEMS_LOC)
+    print(result_tree)
 
 
 if __name__ == "__main__":

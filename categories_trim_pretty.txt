@@ -1,0 +1,49 @@
+{
+'1143372': 
+	{
+	'level': 1, 
+	'category_id_lvl_1': '1143372', 
+	'name': 'Baikal Store', 
+	'url': 'https://irmag.ru/cat/1143372', 
+	'subcategories': 
+		{
+		'1143572': 
+			{
+			'level': 2, 
+			'category_id_lvl_2': '1143572', 
+			'name': 'Изделия из дерева', 
+			'url': 'https://irmag.ru/cat/1143572', 
+			'subcategories': None
+			}, 
+		'1143643': 
+			{
+			'level': 2, 
+			'category_id_lvl_2': '1143643', 
+			'name': 'Косметика', 
+			'url': 'https://irmag.ru/cat/1143643', 
+			'subcategories': None
+			}, 
+		'1143557': 
+			{
+			'level': 2, 
+			'category_id_lvl_2': '1143557', 
+			'name': 'Свечи', 
+			'url': 'https://irmag.ru/cat/1143557', 
+			'subcategories': None
+			}, 
+		'1267960': 
+			{
+			'level': 2, 
+			'category_id_lvl_2': '1267960', 
+			'name': 'Эко-продукты', 
+			'url': 'https://irmag.ru/cat/1267960', 
+			'subcategories': None}
+			}
+	},
+'11': 
+	{
+	'level': 1, 
+	'category_id_lvl_1': '11', 
+	'name': 'Бытовая химия', 
+	'url': 'https://irmag.ru/cat/11', 
+	'subcategories': {'127881': {'level': 2, 'category_id_lvl_2': '127881', 'name': 'Средства для мытья посуды', 'url': 'https://irmag.ru/cat/127881', 'subcategories': {'655641': {'level': 3, 'category_id_lvl_3': '655641', 'name': 'Средства для посудомоечных машин', 'url': 'https://irmag.ru/cat/655641', 'subcategories': None}, '655709': {'level': 3, 'category_id_lvl_3': '655709', 'name': 'Средства для мытья посуды', 'url': 'https://irmag.ru/cat/655709', 'subcategories': None}}}, '127876': {'level': 2, 'category_id_lvl_2': '127876', 'name': 'Антистатики', 'url': 'https://irmag.ru/cat/127876', 'subcategories': None}, '127889': {'level': 2, 'category_id_lvl_2': '127889', 'name': 'Товары для стирки белья', 'url': 'https://irmag.ru/cat/127889', 'subcategories': {'127888': {'level': 3, 'category_id_lvl_3': '127888', 'name': 'Порошки и жидкие средства для стирки', 'url': 'https://irmag.ru/cat/127888', 'subcategories': {'127903': {'level': 4, 'category_id_lvl_4': '127903', 'name': 'Порошки для стирки', 'url': 'https://irmag.ru/cat/127903', 'subcategories': None}, '128343': {'level': 4, 'category_id_lvl_4': '128343', 'name': 'Детские', 'url': 'https://irmag.ru/cat/128343', 'subcategories': None}, '127904': {'level': 4, 'category_id_lvl_4': '127904', 'name': 'Для белого белья', 'url': 'https://irmag.ru/cat/127904', 'subcategories': None}, '131098': {'level': 4, 'category_id_lvl_4': '131098', 'name': 'Для деликатных тканей', 'url': 'https://irmag.ru/cat/131098', 'subcategories': None}, '127905': {'level': 4, 'category_id_lvl_4': 
