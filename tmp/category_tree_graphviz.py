@@ -1,5 +1,6 @@
 from graphviz import Digraph
 
+
 def build_tree(dot, tree):
     for key, value in tree.items():
         node_id = f"{value['level']}_{key}"
@@ -8,10 +9,12 @@ def build_tree(dot, tree):
             build_tree(dot, value['subcategories'])
             dot.edge(node_id, f"{value['subcategories'].keys()}")
 
+
 def visualize_tree(tree):
     dot = Digraph(comment='Category Tree')
     build_tree(dot, tree)
     dot.render('category_tree', format='png', cleanup=True)
+
 
 # Пример использования
 tree = {
